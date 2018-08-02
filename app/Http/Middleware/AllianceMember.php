@@ -17,7 +17,7 @@ class AllianceMember
     {
         if (\Auth::check()) {
             $user = \Auth::user();
-            if ($user->sso->characterPublic->alliance_id === 990023671) {
+            if ($user->sso->characterPublic->alliance_id === 99002367) {
                 return $next($request);
             }
         }
