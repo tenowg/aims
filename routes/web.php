@@ -11,11 +11,13 @@
 |
 */
 
+use App\Http\Middleware\AllianceMember;
+
 Route::get('/', 'HomeController@index');
 
 Route::prefix('store')->group(function() {
     Route::post('submititem', 'ItemsController@submitItem');
-    Route::get('newitem', 'ItemsController@newitem');
+    Route::get('newitem', 'ItemsController@newitem')->middleware(AllianceMember::class);
     Route::get('packages', 'ViewMarketController@packages');
     Route::get('items', 'ViewMarketController@items');
     Route::get('item/{item}', 'ViewMarketController@item');
@@ -26,4 +28,8 @@ Route::prefix('store')->group(function() {
 Route::prefix('eve')->group(function() {
     Route::get('auth', 'Auth\LoginController@redirectToProvider');
     Route::get('auth/callback', 'Auth\LoginController@handleProviderCallback');
+});
+
+Route::prefix('errors')->group(function() {
+    Route::view('nonalliancemember', 'errors.nonalliancemember');
 });
