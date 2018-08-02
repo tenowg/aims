@@ -1,0 +1,25 @@
+@component('layouts.master')
+    @slot('title')
+        Items
+    @endslot
+    <aims-sidebar></aims-sidebar>
+    @foreach($items as $item)
+        @component('display.itemlist')
+            @slot('name') 
+                {{$item['name']}}
+            @endslot
+            @slot('package')
+                {{$item['package_id']}}
+            @endslot
+            @slot('price')
+                {{$item['price']}}
+            @endslot
+            @slot('quantity')
+                {{$item['quantity']}}
+            @endslot
+            @slot('type')
+                {{$item['item_id']}}
+            @endslot
+        @endcomponent
+    @endforeach
+@endcomponent

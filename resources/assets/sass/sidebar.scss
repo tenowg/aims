@@ -1,0 +1,45 @@
+@import 'variables';
+#app {
+    padding-left: 35px;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    z-index: 1;
+    height: 100vh;
+    background-color: $black;
+    overflow-x: hidden;
+    padding-top: 30px;
+    transition: 0.5s;
+    &.closed {
+        width: 30px;
+    }
+    .closebtn {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        font-size: 29px;
+        margin-left: 35px;
+        line-height: .8;
+        padding: 0;
+        width: 25px;
+    }
+    a {
+        padding: 0px 0px 0px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: $system_text;
+        display: block;
+        transition: 0.5s;
+        width: 250px;
+        &:hover {
+            color: $system_hover;
+        }
+        &.closed {
+            padding: 0px 0px 0px 0px;
+        }
+    }
+}
