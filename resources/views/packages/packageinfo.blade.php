@@ -2,11 +2,7 @@
     @slot('title')
         Package
     @endslot
-    @slot('description')
-    WTS: 
-        @foreach($package->items as $item)
-            {{$item->name}} 
-        @endforeach
+    @slot('description') WTS: @foreach($package->items as $item) {{$item->name}} @endforeach
     @endslot
     <aims-sidebar></aims-sidebar>
     <form method="POST" action="/store/buyitems/{{$package->id}}">
