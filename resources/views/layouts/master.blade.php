@@ -7,6 +7,10 @@
         
         <title>AIMS - {{ $title }}</title>
         <meta name="description" content="{{$description or 'Alliance Internal Market System'}}">
+        <meta content="AIMS - {{ $title }}" property="og:title">
+        <meta content="{{$description or 'Alliance Internal Market System'}}" property="og:description">
+        <meta content="AIMS" property="og:site_name">
+
         <!-- Fonts -->
         <link href="{{asset("css/app.css")}}" rel="stylesheet" type="text/css">
 
