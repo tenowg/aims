@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="Description" CONTENT="{{$description or 'Alliance Internal Market System'}}"/>
+        <meta name="description" content="{{$description or 'Alliance Internal Market System'}}">
         <title>AIMS - {{ $title }}</title>
 
         <!-- Fonts -->
