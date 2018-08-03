@@ -20,7 +20,10 @@ class AllianceMember
             if ($user->sso->characterPublic->alliance_id === 99002367) {
                 return $next($request);
             }
+
+            return redirect('/errors/nonalliancemember');
         }
-        return redirect('/errors/nonalliancemember');
+        return redirect('/eve/auth');
+        
     }
 }

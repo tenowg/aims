@@ -47502,27 +47502,32 @@ var render = function() {
       _c("aims-sidebar-item", {
         attrs: {
           open: _vm.open,
-          icon: "far fa-question-circle",
-          text: "About",
-          href: "/about"
+          icon: "fas fa-chart-line",
+          text: "For Sale",
+          href: "/store/items"
         }
       }),
       _vm._v(" "),
       _c("aims-sidebar-item", {
         attrs: {
           open: _vm.open,
-          icon: "fas fa-stethoscope",
-          text: "Items For Sale",
-          href: "/store/items"
+          icon: "far fa-user",
+          text: "Sell Items",
+          href: "/store/newitem"
         }
       }),
       _vm._v(" "),
       _c("aims-sidebar-item", {
-        attrs: { open: _vm.open, icon: "far fa-user", text: "Client" }
+        attrs: { open: _vm.open, icon: "far fa-comments", text: "Contact" }
       }),
       _vm._v(" "),
       _c("aims-sidebar-item", {
-        attrs: { open: _vm.open, icon: "far fa-comments", text: "Contact" }
+        attrs: {
+          open: _vm.open,
+          icon: "far fa-question-circle",
+          text: "About",
+          href: "/about"
+        }
       })
     ],
     1

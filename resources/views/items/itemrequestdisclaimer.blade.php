@@ -4,7 +4,7 @@
     @endslot
     <aims-sidebar></aims-sidebar>
     <div class="container" style="width: 60vw">
-        <h2>About to Request to Purchase a Listing</h2>
+        <h2>About to Request to Purchase {{$item->quantity}} {{$item->typeName}}</h2>
         <p>You are about to request to purchase a listing from another player in
         Eve-Online, this request should be taken as a promise to buy as soon as the seller
         is able to create a contract in-game, or agree on some other form of delivery and payment.

@@ -15,14 +15,16 @@ use App\Http\Middleware\AllianceMember;
 
 Route::get('/', 'HomeController@index');
 
-Route::prefix('store')->group(function() {
+Route::prefix('store')->middleware(AllianceMember::class)->group(function() {
     Route::post('submititem', 'ItemsController@submitItem');
-    Route::get('newitem', 'ItemsController@newitem')->middleware(AllianceMember::class);
+    Route::get('newitem', 'ItemsController@newitem');
     Route::get('packages', 'ViewMarketController@packages');
+    Route::get('package/{package}', 'ViewMarketController@package');
     Route::get('items', 'ViewMarketController@items');
     Route::get('item/{item}', 'ViewMarketController@item');
     Route::get('request/{item}', 'ViewMarketController@requestItemDisclaimer');
     Route::post('request/{item}', 'ViewMarketController@requestItem');
+    Route::post('buyitems/{package}', 'ViewMarketController@requestItems');
 });
 
 Route::prefix('eve')->group(function() {
