@@ -81,7 +81,7 @@ class ViewMarketController extends Controller
                 'amount' => request('item')[$item['id']][1]
             ]));
         }
-        
+
         $mail = EveMail::create([
             'sender_id' => \Auth::user()->sso->character_id,
             'can_cspa' => false,

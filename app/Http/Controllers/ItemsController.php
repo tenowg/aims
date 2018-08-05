@@ -36,6 +36,6 @@ class ItemsController extends Controller
 
         ProcessSubmittedItem::dispatch($submittedItem);
 
-        return view('itemlisted');
+        return view('itemlisted', compact('submittedItem'));
     }
 }

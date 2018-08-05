@@ -1,12 +1,10 @@
 @component('layouts.master')
     @slot('title')
-        Thanks
+        Successfully added request.
     @endslot
-
-    <div>
-        <aims-sidebar></aims-sidebar>
-        <h1>Your item has been Posted</h1>
-
-        <p>Your item(s) have been posted, and will be be available on the market in a few minutes. Once listed they will be available for 3 days. After the 3 days they will be removed from the market unless they are renewed.</p>
+    <aims-sidebar></aims-sidebar>
+    <div class="container" style="width: 60vw">
+        <h2>Successfully added Package</h2>
+        <p>You hace Successfully added a package, it might take a few moments to process, please give it a moment and try to goto <a href="http://aims.eviannow.xyz/store/package/{{$submittedItem->id}}">Your package display</a> Don't forget to copy the link and paste it to discord chat so people buy your stuff.</p>
     </div>
 @endcomponent
