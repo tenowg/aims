@@ -8,6 +8,7 @@ use App\ListedItem;
 use App\EveMail;
 use App\Http\Requests\RequestListing;
 use App\Http\Requests\RequestItemsFromPackage;
+use App\Transaction;
 
 class ViewMarketController extends Controller
 {
@@ -20,7 +21,7 @@ class ViewMarketController extends Controller
         $items = $package->items;
         $total_value = 0;
         foreach($items as $item) {
-            $total_value = $total_value + ($item->quantity * $item->price);
+            $total_value = $total_value + ($item->remaining * $item->price);
         }
         return view('packages.packageinfo', compact(['package', 'total_value']));
     }
@@ -53,22 +54,39 @@ class ViewMarketController extends Controller
         \App\Jobs\SendEveMail::dispatch($mail);
     }
 
+    public function requestItemsDisclaimer(SubmittedItems $package) {
+        $items = request('item');
+        //dd(request());
+        return view('items.packagerequestdisclaimer', compact('package', 'items'));
+    }
+
     public function requestItems(RequestItemsFromPackage $request, SubmittedItems $package) {
         $receiver = $package->sso;
 
         $user = \Auth::user();
-        $items = $package->items;
-        $items = ListedItem::whereIn('id', request('item'))->where('package_id', $package->id)->get();
-        $total_price = 0;
-        foreach($items as $item) {
-            $total_price = $total_price + ($item['quantity'] * $item['price']);
+        $item_ids = [];
+        foreach(request('item') as $item) {
+            array_push($item_ids, $item[0]);
         }
-
+        $items = ListedItem::whereIn('id', $item_ids)->where('package_id', $package->id)->get();
+        $total_price = 0;
+        $transactions = [];
+        foreach($items as $item) {
+            $amount = request('item')[$item['id']][1];
+            $total_price = $total_price + ($amount * $item['price']);
+            // create transaction for each item requested
+            array_push($transactions, Transaction::create([
+                'listed_item_id' => $item['id'],
+                'purchaser_id' =>$user->sso->character_id,
+                'amount' => request('item')[$item['id']][1]
+            ]));
+        }
+        
         $mail = EveMail::create([
             'sender_id' => \Auth::user()->sso->character_id,
             'can_cspa' => false,
             'subject' => "Request to Buy your Product.",
-            'body' => view('mail.packageitem', compact(['package', 'user', 'items', 'total_price']))->render(),
+            'body' => view('mail.packageitem', compact(['package', 'user', 'transactions', 'total_price']))->render(),
             'reciever_ids' => [$receiver->character_id],
         ]);
 

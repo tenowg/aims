@@ -24,6 +24,7 @@ Route::prefix('store')->group(function() {
         Route::get('item/{item}', 'ViewMarketController@item');
         Route::get('request/{item}', 'ViewMarketController@requestItemDisclaimer');
         Route::post('request/{item}', 'ViewMarketController@requestItem');
+        Route::post('requestitems/{package}', 'ViewMarketController@requestItemsDisclaimer');
         Route::post('buyitems/{package}', 'ViewMarketController@requestItems');
     });
     Route::get('package/{package}', 'ViewMarketController@package');

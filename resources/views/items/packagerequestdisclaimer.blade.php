@@ -21,8 +21,11 @@
                 </label>
             </div>
             <div>
-            @foreach($package->items as $item)
-                <input type="hidden" name="item" value="{{$item->id}}">
+            @foreach($items as $item)
+                @if(array_key_exists(0, $item))
+                    <input type="hidden" name="item[{{$item[0]}}][0]" value="{{$item[0]}}">
+                    <input type="hidden" name="item[{{$item[0]}}][1]" value="{{$item[1]}}">
+                @endif
             @endforeach
                 <input id="submit" type="submit">Continue</input>
             </div>

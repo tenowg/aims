@@ -4,9 +4,14 @@
     @endslot
     @slot('description') WTS: @foreach($package->items as $item) {{$item->name}} @endforeach
     @endslot
+    @slot('head')
+        @guest('is-alliance')
+            <meta http-equiv="Refresh" content="0; url=/eve/auth">
+        @endguest
+    @endslot
     <aims-sidebar></aims-sidebar>
     @auth('is-alliance')
-        <form method="POST" action="/store/buyitems/{{$package->id}}">
+        <form method="POST" action="/store/requestitems/{{$package->id}}">
         @csrf
         <div class="container-fluid" style="height: 256px">
             <p style="float: left; margin-right: 20px">
@@ -49,7 +54,7 @@
                             @endif
                         @endslot
                         @slot('quantity')
-                            {{$item->quantity}}
+                            {{$item->remaining}}
                         @endslot
                         @slot('id')
                             {{$item->id}}
@@ -60,8 +65,5 @@
         </div>
         </form>
     @endauth
-    @guest('is-alliance')
-        Please log-in with an alliance character
-    @endguest
 
 @endcomponent

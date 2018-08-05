@@ -2,8 +2,8 @@ This message is from AIMS, the following buyer wants to purchase some items from
 
     {{$user->sso->name}}
 
-@foreach($items as $item)
-    {{$item['name']}} - {{$item['quantity']}} at {{number_format($item['price'], 2)}} ISK each, total {{number_format($item['quantity'] * $item['price'], 2)}}
+@foreach($transactions as $transaction)
+    {{$transaction->item->name}} - {{$transaction->amount}} at {{number_format($transaction->item->price, 2)}} ISK each, total {{number_format($transaction->amount * $transaction->item->price, 2)}}
 @endforeach
 
 Total Contract Value: {{number_format($total_price)}}

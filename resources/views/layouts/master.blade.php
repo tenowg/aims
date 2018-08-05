@@ -13,7 +13,7 @@
 
         <!-- Fonts -->
         <link href="{{asset("css/app.css")}}" rel="stylesheet" type="text/css">
-
+        {{$head or ''}}
     </head>
     <body>
         <div id="app">
