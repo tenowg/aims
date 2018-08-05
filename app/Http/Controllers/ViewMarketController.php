@@ -71,7 +71,7 @@ class ViewMarketController extends Controller
             'body' => view('mail.packageitem', compact(['package', 'user', 'items', 'total_price']))->render(),
             'reciever_ids' => [$receiver->character_id],
         ]);
-dd($mail);
+
         \App\Jobs\SendEveMail::dispatch($mail);
     }
 }

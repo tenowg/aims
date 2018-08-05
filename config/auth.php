@@ -45,6 +45,10 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'is-alliance' => [
+            'driver' => 'is-alliance'
+        ]
     ],
 
     /*

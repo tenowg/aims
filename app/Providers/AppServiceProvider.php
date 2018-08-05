@@ -13,7 +13,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Auth::viaRequest('is-alliance', function() {
+            if (\Auth::check()) {
+                $user = \Auth::user();
+                if ($user->sso->characterPublic->alliance_id === 99002367) {
+                    return $user;
+                }
+            }
+            return null;
+        });
     }
 
     /**
