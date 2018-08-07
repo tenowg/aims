@@ -1,1 +1,1 @@
-<img src="https://image.eveonline.com/Type/{{$type}}_{{$size or 32}}.png">
+<img class="round" src="https://image.eveonline.com/Type/{{$type}}_{{$size or 32}}.png">

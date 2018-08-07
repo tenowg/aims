@@ -1,9 +1,12 @@
-@component('layouts.master')
-    @slot('title')
-        Home
-    @endslot
+@extends('adminlte::page')
+@section('title', 'Welcome')
+
+@section('content_header')
+    <h1>Welcome to AIMS</h1>
+@endsection
+
+@section('content')
     <div>
-        <aims-sidebar></aims-sidebar>
         <div>
             <p>Welcome to AIMS, this website is to assist in the industry market for Evictus Alliance.</p>
             <p>I am not a HTML wizard by any means, so this site is probably going to remain ugly until I can get someone else to work on the HTML and improve how it looks... if there are any takers, please @Jenny Dawn on Discord in Evistus chat, or DM, or Evian Industries chat.</p>
@@ -19,4 +22,5 @@
             <p>Don't forget to link the item in chat...</p>
             <p>Feel free to contact me at any time, thanks</p>
     </div>
-@endcomponent
+@endsection
+

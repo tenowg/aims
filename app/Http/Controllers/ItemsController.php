@@ -7,6 +7,7 @@ use App\Http\Requests\SubmittedItem;
 use App\SubmittedItems;
 use App\Jobs\ProcessSubmittedItem;
 use \Auth;
+use App\Jobs\DeletePackage;
 
 class ItemsController extends Controller
 {
@@ -37,5 +38,10 @@ class ItemsController extends Controller
         ProcessSubmittedItem::dispatch($submittedItem);
 
         return view('itemlisted', compact('submittedItem'));
+    }
+
+    public function removePackage(SubmittedItems $package) {
+        DeletePackage::dispatch($package);
+        return view('items.package_delete');
     }
 }

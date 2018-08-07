@@ -33,8 +33,23 @@ class ViewMarketController extends Controller
     }
 
     public function items() {
-        $items = ListedItem::all()->toArray();
-        return view('listeditems', compact(['items']));
+        $items = [];
+        if(request('search')) {
+            $search_items = [];
+            foreach(request('search') as $s) {
+                array_push($search_items, $s);
+            }
+            $items = ListedItem::whereIn('name', $search_items)->get()->toArray();
+        } else {
+            $items = ListedItem::all()->toArray();
+        }
+
+        //dd($items);
+        $distinct_names = ListedItem::select('name')
+            ->distinct()
+            ->orderBy('name', 'asc')
+            ->get()->toArray();
+        return view('listeditems', compact(['items', 'distinct_names']));
     }
 
     public function requestItemDisclaimer(ListedItem $item) {
@@ -56,8 +71,15 @@ class ViewMarketController extends Controller
 
     public function requestItemsDisclaimer(SubmittedItems $package) {
         $items = request('item');
-        //dd(request());
-        return view('items.packagerequestdisclaimer', compact('package', 'items'));
+        $item_ids = [];
+        //dd(request('item'));
+        foreach(request('item') as $item) {
+            if (array_key_exists(0, $item)) {
+                array_push($item_ids, $item[0]);
+            }
+        }
+        $item_details = ListedItem::whereIn('id', $item_ids)->where('package_id', $package->id)->get();
+        return view('items.packagerequestdisclaimer', compact('package', 'items', 'item_details'));
     }
 
     public function requestItems(RequestItemsFromPackage $request, SubmittedItems $package) {

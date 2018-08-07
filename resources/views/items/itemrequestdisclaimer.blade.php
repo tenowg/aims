@@ -1,8 +1,11 @@
-@component('layouts.master')
-    @slot('title')
-        Request Item Disclaimer
-    @endslot
-    <aims-sidebar></aims-sidebar>
+@extends('adminlte::page')
+@section('title', 'Request Item Disclaimer')
+
+@section('content_header')
+    <h1>Request Items Disclaimer</h1>
+@endsection
+
+@section('content')
     <div class="container" style="width: 60vw">
         <h2>About to Request to Purchase {{$item->quantity}} {{$item->typeName}}</h2>
         <p>You are about to request to purchase a listing from another player in
@@ -25,4 +28,4 @@
             </div>
         </form>
     </div>
-@endcomponent
+@endsection

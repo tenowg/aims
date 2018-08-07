@@ -48,7 +48,11 @@ return [
 
         'is-alliance' => [
             'driver' => 'is-alliance'
-        ]
+        ],
+        
+        'is-package-owner' => [
+            'driver' => 'is-package-owner'
+        ],
     ],
 
     /*

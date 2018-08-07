@@ -1,20 +1,21 @@
-<a href="#" class="container-fluid">
-    <div class="row">
-        <div class="col-sm">
+<tr>
+    <td>
         @component('display.typeimage')
             @slot('type')
                 {{$type}}
             @endslot
         @endcomponent
-        </div>
-        <div class="col-sm">
-            {{$name}} ({{$quantity}})
-        </div>
-        <div class="col-sm">
-            {{$price}}
-        </div>
-        <div class="col-sm">
-            {{$package}}
-        </div>
-    </div>
-</a>
+    </td>
+    <td>
+        {{$name}}
+    </td>
+    <td>
+        {{$quantity}}
+    </td>
+    <td>
+        {{$price}}
+    </td>
+    <td>
+        <a href="/store/package/{{$package}}"><i class="fa fa-folder-open-o"></i></a>
+    </td>
+</tr>

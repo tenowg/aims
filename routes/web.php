@@ -21,11 +21,13 @@ Route::prefix('store')->group(function() {
         Route::get('newitem', 'ItemsController@newitem');    
         Route::get('packages', 'ViewMarketController@packages');
         Route::get('items', 'ViewMarketController@items');
+        Route::post('items', 'ViewMarketController@items');
         Route::get('item/{item}', 'ViewMarketController@item');
         Route::get('request/{item}', 'ViewMarketController@requestItemDisclaimer');
         Route::post('request/{item}', 'ViewMarketController@requestItem');
         Route::post('requestitems/{package}', 'ViewMarketController@requestItemsDisclaimer');
         Route::post('buyitems/{package}', 'ViewMarketController@requestItems');
+        Route::post('package/delete/{package}', 'ItemsController@removePackage')->middleware('auth:is-package-owner');
     });
     Route::get('package/{package}', 'ViewMarketController@package');
 });
@@ -33,7 +35,7 @@ Route::prefix('store')->group(function() {
 Route::prefix('eve')->group(function() {
     Route::get('auth', 'Auth\LoginController@redirectToProvider');
     Route::get('auth/callback', 'Auth\LoginController@handleProviderCallback');
-    Route::get('logout', 'Auth\LoginController@logout');
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 });
 
 Route::prefix('errors')->group(function() {

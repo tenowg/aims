@@ -1,7 +1,9 @@
 This message is from AIMS, the following buyer wants to purchase some items from the site.
 
+Buyer:
     {{$user->sso->name}}
 
+Items:
 @foreach($transactions as $transaction)
     {{$transaction->item->name}} - {{$transaction->amount}} at {{number_format($transaction->item->price, 2)}} ISK each, total {{number_format($transaction->amount * $transaction->item->price, 2)}}
 @endforeach

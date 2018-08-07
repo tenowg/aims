@@ -44,7 +44,7 @@ class SendEveMail implements ShouldQueue
         }
 
         $test = $esi_char->getCspa($this->mail->sso, ...$rec_sso);
-//var_dump($this->mail->body);
+
         $sent = $esi->sendMail($this->mail->sso, $this->mail->body, $this->mail->subject, 0, ...$rec_sso);
     }
 }
